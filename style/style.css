@@ -1,0 +1,70 @@
+h3 {
+  font-family: 'Ultra', serif;
+  color: #4e120a;
+  font-size: 25px;
+  padding: 1em; }
+
+.header {
+  background-color: #CFD586; }
+
+.navbar-toggler {
+  padding: 0.20rem 0.70rem;
+  font-size: 1rem; }
+
+.bg-light {
+  --bs-bg-opacity: 0.3; }
+
+.dropdown-menu.show {
+  position: absolute;
+  inset: 0px 0px auto auto;
+  margin: 0px;
+  transform: translate3d(0.29688px, 42px, 0px); }
+
+.marca {
+  font-family: 'Ultra', serif;
+  color: #4e120a;
+  font-size: 40px; }
+
+.top-nav {
+  background-color: #999c37; }
+
+.barraNav {
+  background-color: #CFD586; }
+
+.icon {
+  height: 20px; }
+
+.card {
+  align-items: center; }
+
+.card-img-top {
+  width: 90%;
+  border: 2px;
+  padding: 1rem 1rem; }
+
+.boton-card {
+  text-align: center; }
+
+.btn {
+  color: black;
+  background-color: #e79d35;
+  border-color: #e79d35; }
+  .btn :hover {
+    transform: scale(1.05);
+    transition: all 0.25s; }
+
+.card-footer {
+  background-color: white; }
+
+.foot-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 100%;
+  text-align: center; }
+
+.footer {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, #0cbccc, #8decf0);
+  font-size: 15px;
+  text-align: center; }
