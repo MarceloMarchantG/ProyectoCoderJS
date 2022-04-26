@@ -1,74 +1,89 @@
 
+// Variables
+let item = ""
+let cantidad = 0
+let detalle = ""
+let totalCarro = ""
+let totalMonto = 0
 
-const pr1 = "PRODUCTO 1";
-const pr2 = "PRODUCTO 2";
-const pr3 = "PRODUCTO 3";
-const pr4 = "PRODUCTO 4";
-const pr1Precio = 1000;
-const pr2Precio = 1500;
-const pr3Precio = 2000;
-const pr4Precio = 2300;
-
-let precio = 0;
-let item = "";
-let resumen = "";
-let monto = 0;
-let montoProducto = 0;
-
-function subTotal (precio, cantidad) {
-    return monto = precio * cantidad;
-}
-
-
-function agregarAlCarrito(producto, cantidad){
-    producto = producto.toLowerCase();
-    if (producto == "pr1") {
-        precio = pr1Precio;
-        subTotal(precio, cantidad)
-        return item = `       ${cantidad}            ${pr1}      =     $`+ monto;
-    } else if (producto == "pr2") {
-        precio = pr2Precio;
-        subTotal(precio, cantidad)
-        return item = `       ${cantidad}           ${pr2}     =     $`+ monto;
-    } else if (producto == "pr3") {
-        precio = pr3Precio;
-        subTotal(precio, cantidad)
-        return item = `       ${cantidad}           ${pr3}     =     $`+ monto;    
-    } else if (producto == "pr4") {
-        precio = pr4Precio;
-        subTotal(precio, cantidad)
-        return item = `       ${cantidad}           ${pr4}     =     $`+ monto;    
+// Se declara array
+let productos = []
+// Se define la clase para crear los objetos
+class Producto {
+    constructor(tipo, codigoVenta, nombre, precio, estado, descripcion) {
+        this.tipo = tipo.toUpperCase();
+        this.codigoVenta = codigoVenta.toUpperCase();
+        this.nombre = nombre;
+        this.precio = parseInt(precio);
+        this.estado = "activo";
+        this.descripcion = descripcion;
     }
 }
 
+// Se crean los objetos
+productos.push(new Producto("h", "h1", "Rod Big Boss", 6500, "", "Jugosa hamburguesa doble con cheddar, tocino, aros de cebolla y un huevo frito."))
+productos.push(new Producto("h", "h2", "Rod Dills", 5500, "", "Jugosa hamburguesa sobre cama de lechuga, con cheddar pepinillos y mayonesa casera, simplemente deliciosa."))
+productos.push(new Producto("h", "h3", "Rod Spicy", 6600, "", "Para los amantes del picante, deliciosa hamburguesa con cheddar, jalapeño, cebolla morada en cuadritos, papas hilo y la salsa secreta de la casa."))
+productos.push(new Producto("h", "h4", "Rod Champi", 6900, "", "Deliciosa hamburguesa sobre una cama de lechuga y tomate, cubierta con champiñones salteados, cebolla caramelizada y palta."))
+productos.push(new Producto("h", "h5", "Rod Guaca Guaca", 6900, "", "Jugosa hamburguesa con cheddar sobre una cama de lechuga, cubierta con pepinillos y el delicioso guacamole de la casa."))
+productos.push(new Producto("h", "h6", "Rod Big Boss Special", 7500, "", "Jugosa hamburguesa doble con cheddar, tocino, aros de cebolla y un huevo frito más tomate lechuga y cebolla morada."))
+productos.push(new Producto("h", "h7", "Rod Champi-oink Triple", 8500, "", "Tres hamburguesas (si, 3) con cheddar, champiñones salteados, cebolla caramelizada y palta. Solo para valientes."))
+productos.push(new Producto("h", "h8", "Rod La Fresquita", 4990, "", 'Deliciosas croqueta de "poroto negro-quinoa-mani" sobre cama de lechuga y tomate, con pepinillos y cebolla morada.'))
+productos.push(new Producto("a", "a1","Rod Bacon Fries", 3500, "", "Crujientes papas fritas cubiertas con queso cheddar y tocino."))
+productos.push(new Producto("a", "a2", "Rod Guaca Fries", 3700, "", "Crujientes papas fritas cubiertascon un exquisito guacamole."))
+productos.push(new Producto("a", "a3", "Rod Jalapeño Fries", 3700, "", "Crujientes papas fritas cubiertas con cheddar y ají jalapeño."))
+productos.push(new Producto("a", "a4", "Canasta Nugget", 3700, "", "Deliciosos nuggets, empanaditas de queso y papas fritas. Un clásico."))
+productos.push(new Producto("b", "b1", "Coca Cola", 1000, "", "Lata 350cc"))
+productos.push(new Producto("b", "b2", "Fanta", 1000, "", "Lata 350cc"))
+productos.push(new Producto("b", "b3", "Sprite", 1000, "", "Lata 350cc"))
+productos.push(new Producto("b", "b4", "Jugo del Valle", 1000, "", "Botella 300cc"))
+
+let listadoCodigos = ["H1" ,"H2", "H3", "H4", "H5", "H6", "H7", "H8", "A1", "A2", "A3", "A4", "B1", "B2", "B3", "B4"]
+
+// Se crea el "Menu" para mostrar en el prompt
+let menu= ""
+for(let producto of productos){
+    menu += `   ${producto.codigoVenta}          ${producto.nombre}       =    $${producto.precio}` +"\n"
+}
+
+// Función con la que muestro los productos que se agragan al carro y que me entrega el total del producto
+function AgregarAlCarro(){productos.forEach(objeto =>{
+    if(objeto.codigoVenta === item.toUpperCase()){
+        detalle = (`${cantidad} ${objeto.nombre}    $${objeto.precio}   =   $${objeto.precio * cantidad}`);
+        monto = objeto.precio * cantidad;
+        } 
+})
+}
 
 
-for (i = 0; i < 10; i+=1) {
-    //let producto = prompt("LISTADO DE PRODUCTOS\n\nCódigo     Nombre        Precio\n    PR1     Producto 1     $1000\n    PR2    Producto 2     $1500\n    PR3    Producto 3     $2000\n\nPor favor ingresa el código del producto\n(Para finalizar la compra ingrese PAGAR)");
-    let producto = prompt(`LISTADO DE PRODUCTOS\n\nCódigo       Nombre          Precio\n   PR1      ${pr1}     $${pr1Precio}\n   PR2     ${pr2}     $${pr2Precio}\n   PR3     ${pr3}     $${pr3Precio}\n   PR4     ${pr4}     $${pr4Precio}\nPor favor ingresa el código del producto\n(Para finalizar la compra ingrese PAGAR)`);
-    producto = producto.toLowerCase();
-        
-        if (producto !== "pr1" && producto !== "pr2" && producto !== "pr3" && producto !== "pr4" && producto !== "pagar") {
-            alert("Ingresaste un código inexistente\nPor favor, intenta nuevamente.")
-            continue
-        }
-   
-    if (producto !== "pagar") {
-        let cantidad = parseInt(prompt("Por favor, ingresa la cantidad."))
-            
-        if (isNaN(cantidad) == true || (parseInt(cantidad) == 0)) {
+do {
+    item = prompt("         MENÚ\n* Para comprar ingresa el código del producto, para finalizar ingresa la palabra PAGAR*\nCódigo      Producto     Precio\n"+    
+    menu).toUpperCase();
+    if((listadoCodigos.includes(item) == false) && (item !== "") && item !== "PAGAR"){
+        alert("Ingresaste un código inexistente\nPor favor, intenta nuevamente.")
+        continue    
+    }
+
+    if(item !== "PAGAR"){
+        cantidad = parseInt(prompt("Ingrese la cantidad"));
+            if (isNaN(cantidad) === true || (parseInt(cantidad) === 0)) {
                 alert("Ingresaste un dato erroneo\nPor favor, intenta nuevamente.")
                 continue
             }
-       
-            item = agregarAlCarrito(producto, cantidad)
-        
-        resumen += item + "\n"
-        montoProducto += monto    
     } else {
         break
-    }
+        }
 
-}
-alert("El detalle de su compra es el siguiente:\n\nCantidad          Nombre                Sub Total\n" + resumen +
-"                                TOTAL      =     $" + montoProducto  )
+    AgregarAlCarro()
+
+    alert(`Agregado al Carro\n\n${detalle}`)
+    totalCarro += detalle + "\n"
+    totalMonto += monto
+
+} while (item !== "PAGAR");
+
+alert(`El detalle de su compra es el siguiente:\n\n${totalCarro}\n
+       TOTAL COMPRA      =   $${totalMonto}`)
+
+
+

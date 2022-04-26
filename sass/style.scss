@@ -2,6 +2,7 @@
 $colorPrim: #4e120a; //Titulos y subtitulos
 $colorSec: #CFD586; //Barra Titulo
 $colorTer: #CFD586; //Barra nav top
+$green:   #4e120a;
 
 
 
@@ -11,14 +12,24 @@ $colorTer: #CFD586; //Barra nav top
     color: $colorPrim;
     
 } 
-
+a{
+    color: #e79d35;
+    text-decoration: none;
+}
+.nav-link{
+    color: #4e120a;
+}
 h3{
     @include font1;
     font-size: 25px;
     padding: 1em;
 }
+h5{
+    @include font1;
+}
 .header {
     background-color: #CFD586;
+    position: relative;
 
 
 }  
@@ -42,7 +53,10 @@ h3{
     }
 .top-nav{
     background-color: #999c37;
+    // position: fixed;
+    // z-index: 500;
 }
+
 .barraNav{
     background-color: #CFD586;
 }
@@ -69,19 +83,6 @@ h3{
         transform: scale(1.05);
         transition: all 0.25s; }
 }
-.card-footer{
-    background-color: white;
-}
-.foot-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 100%;
-    text-align: center;
-}
-.footer {
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to top, #0cbccc, #8decf0);
-    font-size: 15px;
-    text-align: center;
+footer{
+    background-color: #CFD586;
 }

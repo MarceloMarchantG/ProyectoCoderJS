@@ -1,11 +1,23 @@
+a {
+  color: #e79d35;
+  text-decoration: none; }
+
+.nav-link {
+  color: #4e120a; }
+
 h3 {
   font-family: 'Ultra', serif;
   color: #4e120a;
   font-size: 25px;
   padding: 1em; }
 
+h5 {
+  font-family: 'Ultra', serif;
+  color: #4e120a; }
+
 .header {
-  background-color: #CFD586; }
+  background-color: #CFD586;
+  position: relative; }
 
 .navbar-toggler {
   padding: 0.20rem 0.70rem;
@@ -53,18 +65,5 @@ h3 {
     transform: scale(1.05);
     transition: all 0.25s; }
 
-.card-footer {
-  background-color: white; }
-
-.foot-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 100%;
-  text-align: center; }
-
-.footer {
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to top, #0cbccc, #8decf0);
-  font-size: 15px;
-  text-align: center; }
+footer {
+  background-color: #CFD586; }
