@@ -29,10 +29,13 @@ body{
 }
 h3{
     @include font1;
-    font-size: 25px;
+    font-size: 28px;
     padding: 1em;
 }
 h5{
+    @include font1;
+}
+h7{
     @include font1;
 }
 .header {
@@ -57,8 +60,7 @@ h5{
 .marca {
     @include font1;
     font-size: 50px;
- 
-    }
+}
 
 @media screen and (max-width: 425px ){
     .marca {

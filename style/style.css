@@ -14,10 +14,14 @@ body {
 h3 {
   font-family: 'Ultra', serif;
   color: #4e120a;
-  font-size: 25px;
+  font-size: 28px;
   padding: 1em; }
 
 h5 {
+  font-family: 'Ultra', serif;
+  color: #4e120a; }
+
+h7 {
   font-family: 'Ultra', serif;
   color: #4e120a; }
 

@@ -15,73 +15,94 @@
 
 
     
-    <header>
-        
-    <!-- Top bar / Barra de navegación superior -->            
-            <nav class="navbar navbar-expand-lg top-nav  ">
-                <!-- Top bar izquierda -->
-                <div class="container-fluid">
-                    <button class="navbar-toggler navbar-light bg-light" color="blue"type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link active link-success" aria-current="page" href="../index.html">Inicio</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link link-success" href="../index.html#hamburguesas">Hamburguesas</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link link-success" href="../index.html#starters">Starters</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link link-success" href="../index.html#bebidas">Bebidas</a>
-                            </li>
-                        </ul>
-                </div>
-                <!-- Top bar derecha -->
-                <ul class="nav justify-content-end top-nav">
+        <!-- Top bar / Barra de navegación superior -->            
+        <nav class="navbar navbar-expand-lg top-nav sticky-top">
+            <!-- Top bar izquierda -->
+            <button class="navbar-toggler navbar-light bg-light" color="blue"type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active link-success" aria-current="page" href="cart.html"><img class="icon" src="../img/cart.svg" alt="Carrito"></a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle link-success" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img class="icon" src="../img/person.svg" alt="Usuario">
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item link-success" href="#">Ingresar a la cuenta</a></li>
-                            <li><a class="dropdown-item link-success" href="#">Cerrar Sesión</a></li>
-                            
-                        </ul>
+                        <a class="nav-link active link-success" aria-current="page" href="../index.html">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link link-success" href="#"><img class="icon" src="../img/gear.svg" alt="Administración"></a>
+                        <a class="nav-link link-success" href="../index.html#hamburguesas">Hamburguesas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link-success" href="../index.html#starters">Starters</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link-success" href="../index.html#bebidas">Bebidas</a>
                     </li>
                 </ul>
-
-                </div>
-            </nav>
-
-    <!-- Logo y nombre empresa            -->
-        </div>
+            </div>
+            <!-- Fin top bar izquierda -->
+            <!-- Top bar derecha -->
+            <ul class="nav justify-content-end top-nav" style="justify-content: end;">
+                <li class="nav-item">
+                    <a class="nav-link active link-success" aria-current="page" href="cart.html"><img class="icon" src="../img/cart.svg" alt="Carrito"></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle link-success" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img class="icon" src="../img/person.svg" alt="Usuario">
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item link-success" href="#">Ingresar a la cuenta</a></li>
+                        <li><a class="dropdown-item link-success" href="#">Cerrar Sesión</a></li>
+                        
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link link-success" href="#"><img class="icon" src="../img/gear.svg" alt="Administración"></a>
+                </li>
+            </ul> 
+            <!-- Fin top bar derecha -->           
+        </nav>
+        <!-- Fin top bar / Barra de navegación superior --> 
+    <header> 
+        <!-- Logo y nombre empresa -->        
         <div class="container-fluid header">
             <a class="navbar-brand marca link-success" href="../index.html">
                 <img src="../img/logo-chico-removebg.png" alt="" width="120" class="d-inline-block align-text-center">
                 ROD BURGER
             </a>
         </div>
-        <nav class="barraNav">
-    <!-- Down bar / Navegación entre productos -->
-
-        </nav>
+        <!-- Fin logo y nombre empresa -->  
     </header>
+    <main class="container-fluid">
+        <section class="col-lg-10 offset-lg-1">
+            <h3>Carro de Compras</h3>
+            <ul class="text-center align-content-center justify-content list-group list-group list-group-horizontal-sm">
+                <li class="list-group-item col-lg-2"></li>
+                <li class="list-group-item col-lg-4"><h7>Producto</h7></li>
+                <li class="list-group-item col-lg-1"><h7>Cantidad</h7></li>
+                <li class="list-group-item col-lg-2">Precio</li>
+                <li class="list-group-item col-lg-2">Subtotal</li>
+                <li class="list-group-item col-lg-1">Eliminar</li>
+            </ul>
+            <ul id ="carro" class="text-center align-content-center list-group-flush list-group list-group-horizontal">
+                <li class="list-group-item col-lg-2 "><img src="../img/a-canasta-nugget.jpeg" width="100px" alt=""></li>
+                <li  class="list-group-item col-lg-4"><h5>hambuguesa</h5></li>
+                <li class="list-group-item col-lg-1">2</li>
+                <li class="list-group-item col-lg-2">6500</li>
+                <li class="list-group-item col-lg-2">6500</li>
+                <li class="list-group-item col-lg-1"></li>
+            </ul>
+            <ul class="text-center list-group list-group-flush list-group-horizontal-sm">
+                <li class="list-group-item col-lg-7"></li>
+                <li class="list-group-item col-lg-2">total</li>
+                <li class="list-group-item col-lg-2">Subtotal</li>
+                <li class="list-group-item col-lg-1">Eliminar</li>
+            </ul>
 
 
-        </section>    
+        </section>
     </main>
-     <!-- footer -->       
-     <footer class="text-center ">        
+
+
+    <!-- footer -->       
+    <footer class="text-center ">        
         <div class="container p-4">    
             <!-- Fila RRSS -->
             <section class="mb-4">
