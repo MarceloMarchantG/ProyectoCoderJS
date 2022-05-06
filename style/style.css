@@ -15,7 +15,7 @@ h3 {
   font-family: 'Ultra', serif;
   color: #4e120a;
   font-size: 28px;
-  padding: 1em; }
+  padding: 1.5em; }
 
 h5 {
   font-family: 'Ultra', serif;
@@ -83,5 +83,42 @@ h7 {
     transform: scale(1.05);
     transition: all 0.25s; }
 
+.btn-sm {
+  padding: 0.1rem 0.3rem;
+  font-size: .85rem; }
+
 footer {
   background-color: #CFD586; }
+
+.lg-2 {
+  width: 30px; }
+
+.input-group {
+  justify-content: center;
+  padding-bottom: 5px; }
+
+input {
+  text-align: center;
+  border-width: 1px;
+  font-size: 13px; }
+
+.carro {
+  display: grid;
+  grid-template-columns: 70px 160px 60px 70px;
+  grid-gap: 10px;
+  padding: 10px;
+  background-color: #CFD586; }
+  .carro div {
+    text-align: center; }
+
+#carrito {
+  display: grid;
+  grid-template-columns: 70px 160px 60px 70px;
+  grid-gap: 10px;
+  padding: 10px;
+  background-color: #F9DD9C;
+  border-top: 1px solid #4e120a;
+  border-bottom: 1px solid #4e120a; }
+
+.offcanvas-end {
+  width: 470px; }

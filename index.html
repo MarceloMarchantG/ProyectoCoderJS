@@ -23,7 +23,7 @@
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active link-success" aria-current="page" href="index.html">Inicio</a>
+                            <a class="nav-link active link-success" aria-current="page" href=# >Inicio</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link link-success" href="#hamburguesas">Hamburguesas</a>
@@ -40,7 +40,8 @@
                 <!-- Top bar derecha -->
                 <ul class="nav justify-content-end top-nav" style="justify-content: end;">
                     <li class="nav-item">
-                        <a class="nav-link active link-success" aria-current="page" href="sections/cart.html"><img class="icon" src="img/cart.svg" alt="Carrito"></a>
+                        <!-- En el elemento <a> se agregó: data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" -->
+                        <a class="nav-link active link-success" aria-current="page" href=# data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><img class="icon" src="img/cart.svg" alt="Carrito"><span id="contador" class="badge bg-success">0</span></a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle link-success" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -72,24 +73,55 @@
 
     <main class="container-fluid">
         <section class="col-lg-10 offset-lg-1">
+            <!-- Temporal -->
+            <!-- <button class="btn btn-primary btn-warning boton" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Mostrar Carrito</button> -->
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+            <div class="offcanvas-header">
+                <h5 id="offcanvasRightLabel">Carro de Compras</h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div class="container ">
+                    <div class="carro">
+                        <div><h6>Cantidad</h6></div>
+                        <div><h6>Producto</h6></div>
+                        <div><h6>Precio</h6></div>
+                        <div><h6>Subtotal</h6></div>
+                    </div>
+                    <div id="carrito" class="carro">
+                        <p>CARRO VACÍO</p>
+                    </div>
+
+                    <div class="carro">
+                        <div><h6></h6></div>
+                        <div><h6></h6></div>
+                        <div><h6>Total</h6></div>
+                        <div><h6 id="total">0</h6></div>
+                    </div>
+
+                </div>
+            </div>
+            </div>
+            <!-- Temporal -->
             <!-- Hamburguesas -->
             <h3>Hamburguesas</h3>
-            <div id="hamburguesas" class="row row-cols-1 row-cols-md-3 g-4">
+            <div id="hamburguesas" class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
 
             </div>
             <!-- Fin hamburguesas -->
             <!-- Starters -->
             <h3>Starters</h3>
-            <div id="starters" class="row row-cols-1 row-cols-md-3 g-4">
+            <div id="starters" class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
                 
             </div>
             <!-- Fin starters -->
             <!-- Bebidas -->
             <h3>Bebidas</h3>
-            <div id="bebidas" class="row row-cols-1 row-cols-md-3 g-4">
+            <div id="bebidas" class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
             
             </div>
             <!-- Fin bebidas -->
+            
         </section>    
     </main>
     <!-- footer -->       
