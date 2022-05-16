@@ -52,7 +52,7 @@ function Carta(seccion, producto){
     seccion.innerHTML += 
     `<div class="col">
         <div class="card h-100">
-            <img src=${producto.imagen} class="card-img-top" alt="...">
+            <img src=${producto.imagen} class="card-img-top" alt="${producto.nombre}">
             <div class="card-body">
                 <h5 class="card-title">${producto.nombre}</h5>
                 <p class="card-text">${producto.descripcion}</p>                
@@ -82,25 +82,58 @@ for (let producto of productos){
 }
 
 
-//const btnAumentar = document.querySelector(`.input-group input[type="aumenta"]`)
-const cantidad = document.getElementsByClassName("form-sm")
+//const cantidad = document.getElementsByClassName("form-sm")
 
-//const btnAgregar = document.querySelector(".boton")
-const carro = []
+let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+let tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+return new bootstrap.Tooltip(tooltipTriggerEl)
+})
+
+let total = document.getElementById("total")    
+let carrito = document.getElementById("carrito")
+let contador = document.getElementById("contador")
+
+let totcant = 0
+
+let carro = []
+
+
+
+let carroJSON = []
+
+document.addEventListener("DOMContentLoaded", function(){
+    carritoLS = JSON.parse(localStorage.getItem("carroLS"))
+    carro = carritoLS.slice()
+
+
+    let totalCant = carro.map(item => item.cantidad).reduce((ant, act) => ant + act, 0 )
+    contador.innerHTML = totalCant
+
+})
 
 
 
 function AgregarAlCarro (codigoVenta) {
+   
     const productoAgregado = productos.find(producto => producto.codigoVenta == codigoVenta);
     if (carro.includes(productoAgregado)) {
         ++ productoAgregado.cantidad 
     } else {
         carro.push(productoAgregado)
+        
         }
+    Swal.fire({
+        html: 'Se agregó '+ productoAgregado.cantidad +' '+ productoAgregado.nombre + ' a tu carro',
+        timer: 1600,
+        icon: 'success',
+        timerProgressBar: true,
+        showConfirmButton: false, 
+        background: '#fceecd'     
+    })    
     mostrarCarro(carro)
 }
 function mostrarCarro(prod) {
-    carrito.innerHTML = "";
+   
     totalMonto = 0
     totcant = 0
     prod.forEach(element => {
@@ -108,20 +141,22 @@ function mostrarCarro(prod) {
         totalMonto += subt
         let cont = element.cantidad
         totcant += cont
-        carrito.innerHTML += 
-        `<div><p>${element.cantidad}</p></div>   
-        <div><p>${element.nombre}</p></div>
-        <div><p>${element.precio}</p></div>
-        <div><p>${subt}</p></div>
-        `
-        total.innerText= totalMonto
+        
         contador.innerText = totcant
+       
     });
+    carroJSON = JSON.stringify(carro)
+    localStorage.setItem("carroLS", carroJSON)
 
-    }
+   
+}
 
-let total = document.getElementById("total")    
-let carrito = document.getElementById("carrito")
-let contador = document.getElementById("contador")
 
-let totcant = 0
+
+
+
+
+
+
+
+
