@@ -116,12 +116,14 @@ document.addEventListener("DOMContentLoaded", function(){
 function AgregarAlCarro (codigoVenta) {
    
     const productoAgregado = productos.find(producto => producto.codigoVenta == codigoVenta);
-    if (carro.includes(productoAgregado)) {
-        ++ productoAgregado.cantidad 
-    } else {
-        carro.push(productoAgregado)
+    //operador ternario
+    carro.includes(productoAgregado) ? ++productoAgregado.cantidad : carro.push(productoAgregado)
+    // if (carro.includes(productoAgregado)) {
+    //     ++ productoAgregado.cantidad 
+    // } else {
+    //     carro.push(productoAgregado)
         
-        }
+    //     }
     Swal.fire({
         html: 'Se agregó '+ productoAgregado.cantidad +' '+ productoAgregado.nombre + ' a tu carro',
         timer: 1600,

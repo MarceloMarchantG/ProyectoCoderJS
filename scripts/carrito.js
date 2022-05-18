@@ -15,22 +15,72 @@ carritoLS.forEach(element => {
 
 });
 
+
+
+
 function actCarro() {
 
     let subt = 0
     carritoLS.forEach(element=> {
         subt = parseInt(element.cantidad)*parseInt(element.precio)
         carrito.innerHTML += 
-        `<div><p>${element.cantidad}</p></div>   
+        `<div><div class="input-group">
+        <button class="btn btn-sm btn-warning" onclick="aumentar(${element.codigoVenta})" name="aumenta" id="aumenta">+</button>
+        <input type="number" value=${element.cantidad} size="1" class="form-sm lg-2" placeholder="1" aria-label="Cantidad" id="numCant">
+        <button class="btn btn-sm btn-warning"  onclick="disminuir(${element.codigoVenta})" name="disminuye" id="disminuye">-</button>                   
+    </div></div>   
         <div><p>${element.nombre}</p></div>
         <div><p>${element.precio}</p></div>
         <div><p>${subt}</p></div>
-        <div><a class="nav-link link-success btn-borrar" data-bs-toggle="tooltip" title data-bs-original-title="Eliminar Producto" onclick="borrarProducto(${element.codigoVenta})" href="#"><img class="icon" src="../img/trash3.svg" alt="Borrar"></a></div>`    
+        <div><a class="nav-link link-success btn-borrar" data-bs-toggle="tooltip" title data-bs-original-title="Eliminar Producto" onclick="borrarProducto(${element.codigoVenta})" href="#"><img class="icon" src="../img/trash3.svg" alt="Borrar"></a></div>`   
+        
+        
     }) 
     let totalCant = carritoLS.map(item => item.cantidad).reduce((ant, act) => ant + act, 0 )
     contador.innerHTML = totalCant
     totalMonto()
+ 
+
 }
+
+let sumar = document.getElementById("aumenta")
+let numCant = document.getElementById("numCant")
+let restar = document.getElementById("disminuye")
+
+
+function aumentar(codigoVenta) {
+    numCant.value = parseInt(numCant.value) + 1
+    
+    const productoAgregado = carritoLS.find(producto => producto.codigoVenta == codigoVenta);
+    carritoLS.includes(productoAgregado) && ++productoAgregado.cantidad
+
+    carroJSON = JSON.stringify(carritoLS)
+    localStorage.setItem("carroLS", carroJSON)
+    carrito.innerHTML = ""
+    actCarro()
+}
+
+
+function disminuir(codigoVenta) {
+    if (numCant.value > 1) {
+        numCant.value = parseInt(numCant.value) - 1       
+    } else {
+        return
+    }
+    const productoAgregado = carritoLS.find(producto => producto.codigoVenta == codigoVenta);
+    // operador AND
+    carritoLS.includes(productoAgregado) && --productoAgregado.cantidad
+
+    carroJSON = JSON.stringify(carritoLS)
+    localStorage.setItem("carroLS", carroJSON)
+    carrito.innerHTML = ""
+    actCarro()
+}
+
+
+
+
+
 
 function totalMonto() {
     let totalMonto = carritoLS.map(item => item.cantidad * item.precio).reduce((ant, act) => ant + act, 0 )
