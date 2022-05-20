@@ -22,15 +22,20 @@ function actCarro() {
 
     let subt = 0
     carritoLS.forEach(element=> {
-        subt = parseInt(element.cantidad)*parseInt(element.precio)
+
+        //
+        const {codigoVenta, precio, cantidad, nombre} = element
+
+
+        subt = parseInt(cantidad)*parseInt(precio)
         carrito.innerHTML += 
         `<div><div class="input-group">
-        <button class="btn btn-sm btn-warning" onclick="aumentar(${element.codigoVenta})" name="aumenta" id="aumenta">+</button>
+        <button class="btn btn-sm btn-warning" onclick="aumentar(${codigoVenta})" name="aumenta" id="aumenta">+</button>
         <input type="number" value=${element.cantidad} size="1" class="form-sm lg-2" placeholder="1" aria-label="Cantidad" id="numCant">
-        <button class="btn btn-sm btn-warning"  onclick="disminuir(${element.codigoVenta})" name="disminuye" id="disminuye">-</button>                   
+        <button class="btn btn-sm btn-warning"  onclick="disminuir(${codigoVenta})" name="disminuye" id="disminuye">-</button>                   
     </div></div>   
-        <div><p>${element.nombre}</p></div>
-        <div><p>${element.precio}</p></div>
+        <div><p>${nombre}</p></div>
+        <div><p>${precio}</p></div>
         <div><p>${subt}</p></div>
         <div><a class="nav-link link-success btn-borrar" data-bs-toggle="tooltip" title data-bs-original-title="Eliminar Producto" onclick="borrarProducto(${element.codigoVenta})" href="#"><img class="icon" src="../img/trash3.svg" alt="Borrar"></a></div>`   
         
@@ -87,24 +92,103 @@ function totalMonto() {
     total.innerText = totalMonto
 }    
 
-function borrarProducto(codigoVenta) {
-    let borrado = carritoLS.filter( borr => borr.codigoVenta != codigoVenta)
+// function borrarProducto(codigoVenta) {
+//     let borrado = carritoLS.filter( borr => borr.codigoVenta != codigoVenta)
 
-    carritoLS = borrado.slice()
-    carroJSON = JSON.stringify(carritoLS)
-    localStorage.setItem("carroLS", carroJSON)
-    carrito.innerHTML = ""
-    actCarro()
-    
+//     carritoLS = borrado.slice()
+//     carroJSON = JSON.stringify(carritoLS)
+//     localStorage.setItem("carroLS", carroJSON)
+//     carrito.innerHTML = ""
+//     actCarro()
+// }
+
+
+function borrarProducto(codigoVenta) {
+    Swal.fire({
+        html: 'Estás seguro de eliminar el producto?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#CFD586',
+        cancelButtonColor: '#4e120a',
+        confirmButtonText: 'Si!',
+        cancelButtonText: 'No!',
+        background: '#fceecd', 
+        textButtonColor: 'black'
+      
+    }).then((result) => {
+        if (result.isConfirmed) {
+        Swal.fire({
+            html: 'Producto eliminado',
+            icon: 'success',
+            background: '#fceecd',
+            confirmButtonColor: '#e79d35'
+        })
+            let borrado = carritoLS.filter( borr => borr.codigoVenta != codigoVenta)
+
+            carritoLS = borrado.slice()
+            carroJSON = JSON.stringify(carritoLS)
+            localStorage.setItem("carroLS", carroJSON)
+            carrito.innerHTML = ""
+            actCarro()
+
+
+
+        }
+    })
 
 }
-    
+
+
+
+
+
+
 
 function borrarCarro() {
-    localStorage.clear()
-    carrito.innerHTML = ""
-    contador.innerHTML = 0
-    total.innerText = 0
+
+    Swal.fire({
+    html: 'Estás seguro eliminar TODOS los productos?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#CFD586',
+    cancelButtonColor: '#4e120a',
+    confirmButtonText: 'Si!',
+    cancelButtonText: 'No!',
+    background: '#fceecd', 
+    textButtonColor: 'black'
+  
+    }).then((result) => {
+    if (result.isConfirmed) {
+        Swal.fire({
+        html: 'Todos los productos han sido eliminados',
+        icon: 'success',
+        background: '#fceecd',
+        confirmButtonColor: '#e79d35'
+        })
+
+        localStorage.clear()
+        carrito.innerHTML = ""
+        contador.innerHTML = 0
+        total.innerText = 0
+
+
+    }
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
 }
 
 
@@ -138,3 +222,25 @@ function finalizarCompra() {
     }
 }
 
+
+// Swal.fire({
+//     html: 'Estás seguro de eliminar el producto?',
+//     icon: 'warning',
+//     showCancelButton: true,
+//     confirmButtonColor: '#CFD586',
+//     cancelButtonColor: '#4e120a',
+//     confirmButtonText: 'Si!',
+//     cancelButtonText: 'No!',
+//     background: '#fceecd', 
+//     textButtonColor: 'black'
+  
+//   }).then((result) => {
+//     if (result.isConfirmed) {
+//       Swal.fire({
+//         html: 'Producto eliminado',
+//         icon: 'success',
+//         background: '#fceecd',
+//         confirmButtonColor: '#e79d35'
+//       })
+//     }
+//   })
