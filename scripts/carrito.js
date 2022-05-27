@@ -6,14 +6,25 @@ return new bootstrap.Tooltip(tooltipTriggerEl)
 let carritoLS = localStorage.getItem("carroLS")
 carritoLS = JSON.parse(carritoLS)
 
+console.log(carritoLS)
+
+if (carritoLS === null || carritoLS.length === 0){
+    carroVacio()
+}else{
 
 
-actCarro()
+
+
+
+actCarro()}
 carritoLS.forEach(element => {
 
     let cont = element.cantidad
 
 });
+
+
+
 
 
 
@@ -38,8 +49,7 @@ function actCarro() {
         <div><p>${precio}</p></div>
         <div><p>${subt}</p></div>
         <div><a class="nav-link link-success btn-borrar" data-bs-toggle="tooltip" title data-bs-original-title="Eliminar Producto" onclick="borrarProducto(${element.codigoVenta})" href="#"><img class="icon" src="../img/trash3.svg" alt="Borrar"></a></div>`   
-        
-        
+       
     }) 
     let totalCant = carritoLS.map(item => item.cantidad).reduce((ant, act) => ant + act, 0 )
     contador.innerHTML = totalCant
@@ -81,10 +91,6 @@ function disminuir(codigoVenta) {
     carrito.innerHTML = ""
     actCarro()
 }
-
-
-
-
 
 
 function totalMonto() {
@@ -129,25 +135,22 @@ function borrarProducto(codigoVenta) {
             carroJSON = JSON.stringify(carritoLS)
             localStorage.setItem("carroLS", carroJSON)
             carrito.innerHTML = ""
+
+            if (carritoLS === null || carritoLS.length === 0){
+                carroVacio()
+            }
+
+
+
+
             actCarro()
-
-
-
         }
     })
-
 }
 
-
-
-
-
-
-
 function borrarCarro() {
-
     Swal.fire({
-    html: 'Estás seguro eliminar TODOS los productos?',
+    html: 'Estás seguro de eliminar TODOS los productos?',
     icon: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#CFD586',
@@ -155,8 +158,7 @@ function borrarCarro() {
     confirmButtonText: 'Si!',
     cancelButtonText: 'No!',
     background: '#fceecd', 
-    textButtonColor: 'black'
-  
+    textButtonColor: 'black' 
     }).then((result) => {
     if (result.isConfirmed) {
         Swal.fire({
@@ -170,28 +172,10 @@ function borrarCarro() {
         carrito.innerHTML = ""
         contador.innerHTML = 0
         total.innerText = 0
-
-
+        carroVacio()
     }
     })
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
 }
-
-
 
 
 function finalizarCompra() {
@@ -244,3 +228,18 @@ function finalizarCompra() {
 //       })
 //     }
 //   })
+
+function carroVacio() {
+    carrito.innerHTML += 
+    `<div></div>   
+    <div><p>CARRO VACIO</p></div>
+    <div><img class="icon" src="../img/cart-x2.svg" alt="Carro vacío"></div>
+    <div><p></p></div>
+    <div></div>` 
+
+    let btnFinalizar = document.getElementById("btnFinalizar")
+    btnFinalizar.classList.add("disabled")
+    let btnBorrarCarro = document.getElementById("btnBorrarCarro")
+    btnBorrarCarro.classList.add("disabled")
+    
+}
