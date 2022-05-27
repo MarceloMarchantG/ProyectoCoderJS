@@ -77,7 +77,7 @@ function Carta(seccion, producto){
 }
 
 
-fetch("../data/productos.json")
+fetch("/data/productos.json")
     .then((prod) => prod.json())
     .then((product) => {
         
