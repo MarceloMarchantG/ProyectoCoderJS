@@ -99,7 +99,7 @@ fetch("../data/productos.json")
  
     })
 
-
+console.log(typeof productos)
 
 
 // for (let producto of productos){

@@ -42,7 +42,7 @@ function actCarro() {
         carrito.innerHTML += 
         `<div><div class="input-group">
         <button class="btn btn-sm btn-warning" onclick="aumentar(${codigoVenta})" name="aumenta" id="aumenta">+</button>
-        <input type="number" value=${element.cantidad} size="1" class="form-sm lg-2" placeholder="1" aria-label="Cantidad" id="numCant">
+        <input type="number" readonly min="1" max="20" value=${cantidad} size="1" class="form-sm lg-2" placeholder="1" aria-label="Cantidad" id="numCant">
         <button class="btn btn-sm btn-warning"  onclick="disminuir(${codigoVenta})" name="disminuye" id="disminuye">-</button>                   
     </div></div>   
         <div><p>${nombre}</p></div>
@@ -77,12 +77,18 @@ function aumentar(codigoVenta) {
 
 
 function disminuir(codigoVenta) {
-    if (numCant.value > 1) {
+
+    const productoAgregado = carritoLS.find(producto => producto.codigoVenta == codigoVenta);
+
+    if (productoAgregado.cantidad > 1) {
         numCant.value = parseInt(numCant.value) - 1       
     } else {
+
+        console.log("error")
         return
+       
     }
-    const productoAgregado = carritoLS.find(producto => producto.codigoVenta == codigoVenta);
+    //const productoAgregado = carritoLS.find(producto => producto.codigoVenta == codigoVenta);
     // operador AND
     carritoLS.includes(productoAgregado) && --productoAgregado.cantidad
 
@@ -193,6 +199,10 @@ function finalizarCompra() {
             showConfirmButton: false, 
             background: '#fceecd'     
         }) 
+        setTimeout(() => {
+            document.location.href='../index.html'
+        }, 2500);
+
     }else {
         Swal.fire({
             html: 'Tu carro está vacío',               
@@ -207,27 +217,7 @@ function finalizarCompra() {
 }
 
 
-// Swal.fire({
-//     html: 'Estás seguro de eliminar el producto?',
-//     icon: 'warning',
-//     showCancelButton: true,
-//     confirmButtonColor: '#CFD586',
-//     cancelButtonColor: '#4e120a',
-//     confirmButtonText: 'Si!',
-//     cancelButtonText: 'No!',
-//     background: '#fceecd', 
-//     textButtonColor: 'black'
-  
-//   }).then((result) => {
-//     if (result.isConfirmed) {
-//       Swal.fire({
-//         html: 'Producto eliminado',
-//         icon: 'success',
-//         background: '#fceecd',
-//         confirmButtonColor: '#e79d35'
-//       })
-//     }
-//   })
+
 
 function carroVacio() {
     carrito.innerHTML += 
