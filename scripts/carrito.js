@@ -1,42 +1,17 @@
+// Se declaran las variables
+
 let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
 let tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
 return new bootstrap.Tooltip(tooltipTriggerEl)
 })
 
-let carritoLS = localStorage.getItem("carroLS")
-carritoLS = JSON.parse(carritoLS)
-
-console.log(carritoLS)
-
-if (carritoLS === null || carritoLS.length === 0){
-    carroVacio()
-}else{
-
-
-
-
-
-actCarro()}
-carritoLS.forEach(element => {
-
-    let cont = element.cantidad
-
-});
-
-
-
-
-
-
+// Se declaran las funciones
 
 function actCarro() {
 
     let subt = 0
     carritoLS.forEach(element=> {
-
-        //
         const {codigoVenta, precio, cantidad, nombre} = element
-
 
         subt = parseInt(cantidad)*parseInt(precio)
         carrito.innerHTML += 
@@ -44,54 +19,38 @@ function actCarro() {
         <button class="btn btn-sm btn-warning" onclick="aumentar(${codigoVenta})" name="aumenta" id="aumenta">+</button>
         <input type="number" readonly min="1" max="20" value=${cantidad} size="1" class="form-sm lg-2" placeholder="1" aria-label="Cantidad" id="numCant">
         <button class="btn btn-sm btn-warning"  onclick="disminuir(${codigoVenta})" name="disminuye" id="disminuye">-</button>                   
-    </div></div>   
+        </div></div>   
         <div><p>${nombre}</p></div>
         <div><p>${precio}</p></div>
         <div><p>${subt}</p></div>
-        <div><a class="nav-link link-success btn-borrar" data-bs-toggle="tooltip" title data-bs-original-title="Eliminar Producto" onclick="borrarProducto(${element.codigoVenta})" href="#"><img class="icon" src="../img/trash3.svg" alt="Borrar"></a></div>`   
-       
+        <div><a class="nav-link link-success btn-borrar" data-bs-toggle="tooltip" title data-bs-original-title="Eliminar Producto" onclick="borrarProducto(${element.codigoVenta})" href="#"><img class="icon" src="../img/trash3.svg" alt="Borrar"></a></div>`
     }) 
     let totalCant = carritoLS.map(item => item.cantidad).reduce((ant, act) => ant + act, 0 )
     contador.innerHTML = totalCant
     totalMonto()
- 
-
 }
-
-let sumar = document.getElementById("aumenta")
-let numCant = document.getElementById("numCant")
-let restar = document.getElementById("disminuye")
-
 
 function aumentar(codigoVenta) {
     numCant.value = parseInt(numCant.value) + 1
     
     const productoAgregado = carritoLS.find(producto => producto.codigoVenta == codigoVenta);
     carritoLS.includes(productoAgregado) && ++productoAgregado.cantidad
-
     carroJSON = JSON.stringify(carritoLS)
     localStorage.setItem("carroLS", carroJSON)
     carrito.innerHTML = ""
     actCarro()
 }
 
-
 function disminuir(codigoVenta) {
-
     const productoAgregado = carritoLS.find(producto => producto.codigoVenta == codigoVenta);
-
+    
     if (productoAgregado.cantidad > 1) {
         numCant.value = parseInt(numCant.value) - 1       
     } else {
-
         console.log("error")
-        return
-       
+        return       
     }
-    //const productoAgregado = carritoLS.find(producto => producto.codigoVenta == codigoVenta);
-    // operador AND
     carritoLS.includes(productoAgregado) && --productoAgregado.cantidad
-
     carroJSON = JSON.stringify(carritoLS)
     localStorage.setItem("carroLS", carroJSON)
     carrito.innerHTML = ""
@@ -104,17 +63,6 @@ function totalMonto() {
     total.innerText = totalMonto
 }    
 
-// function borrarProducto(codigoVenta) {
-//     let borrado = carritoLS.filter( borr => borr.codigoVenta != codigoVenta)
-
-//     carritoLS = borrado.slice()
-//     carroJSON = JSON.stringify(carritoLS)
-//     localStorage.setItem("carroLS", carroJSON)
-//     carrito.innerHTML = ""
-//     actCarro()
-// }
-
-
 function borrarProducto(codigoVenta) {
     Swal.fire({
         html: 'Estás seguro de eliminar el producto?',
@@ -124,31 +72,23 @@ function borrarProducto(codigoVenta) {
         cancelButtonColor: '#4e120a',
         confirmButtonText: 'Si!',
         cancelButtonText: 'No!',
-        background: '#fceecd', 
-        textButtonColor: 'black'
-      
+        background: '#fceecd',              
     }).then((result) => {
         if (result.isConfirmed) {
-        Swal.fire({
-            html: 'Producto eliminado',
-            icon: 'success',
-            background: '#fceecd',
-            confirmButtonColor: '#e79d35'
-        })
+            Swal.fire({
+                html: 'Producto eliminado',
+                icon: 'success',
+                background: '#fceecd',
+                confirmButtonColor: '#e79d35'
+            })
             let borrado = carritoLS.filter( borr => borr.codigoVenta != codigoVenta)
-
             carritoLS = borrado.slice()
             carroJSON = JSON.stringify(carritoLS)
             localStorage.setItem("carroLS", carroJSON)
             carrito.innerHTML = ""
-
             if (carritoLS === null || carritoLS.length === 0){
                 carroVacio()
             }
-
-
-
-
             actCarro()
         }
     })
@@ -163,8 +103,7 @@ function borrarCarro() {
     cancelButtonColor: '#4e120a',
     confirmButtonText: 'Si!',
     cancelButtonText: 'No!',
-    background: '#fceecd', 
-    textButtonColor: 'black' 
+    background: '#fceecd',   
     }).then((result) => {
     if (result.isConfirmed) {
         Swal.fire({
@@ -182,7 +121,6 @@ function borrarCarro() {
     }
     })
 }
-
 
 function finalizarCompra() {
     if (localStorage.length > 0){
@@ -202,7 +140,6 @@ function finalizarCompra() {
         setTimeout(() => {
             document.location.href='../index.html'
         }, 2500);
-
     }else {
         Swal.fire({
             html: 'Tu carro está vacío',               
@@ -216,9 +153,6 @@ function finalizarCompra() {
     }
 }
 
-
-
-
 function carroVacio() {
     carrito.innerHTML += 
     `<div></div>   
@@ -230,6 +164,23 @@ function carroVacio() {
     let btnFinalizar = document.getElementById("btnFinalizar")
     btnFinalizar.classList.add("disabled")
     let btnBorrarCarro = document.getElementById("btnBorrarCarro")
-    btnBorrarCarro.classList.add("disabled")
-    
+    btnBorrarCarro.classList.add("disabled")    
 }
+
+
+
+
+let carritoLS = localStorage.getItem("carroLS")
+carritoLS = JSON.parse(carritoLS)
+
+if (carritoLS === null || carritoLS.length === 0){
+    carroVacio()
+}else{
+actCarro()
+}
+carritoLS.forEach(element => {
+    let cont = element.cantidad
+});
+
+
+
